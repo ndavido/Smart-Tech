@@ -1,0 +1,17 @@
+Introduction - 5 credits
+100% CA Course
+Covering
+--------
+- Numpy
+- OpenCV
+- Perceptron
+- CNN - image recognition
+- Behavoural cloning
+
+
+Continous Assesment
+-------------------
+50% - Image Classification
+50% - Self Driving Car -> behavoural cloning
+
+Oportunity for CA feedback 1 week before CA submission.
