@@ -15,3 +15,9 @@ Continous Assesment
 50% - Self Driving Car -> behavoural cloning
 
 Oportunity for CA feedback 1 week before CA submission.
+
+Install
+---------
+Docker
+Github Copilot
+Python
