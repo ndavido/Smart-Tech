@@ -18,7 +18,8 @@ def region_of_interest(image):
     ])
     mask = np.zeros_like(image)
     cv2.fillPoly(mask, triangle, 255)
-    return mask
+    masked_image = cv2.bitwise_and(image, mask)
+    return masked_image
 
 def find_edges(image):
     gray = cv2.cvtColor(image, cv2.COLOR_RGB2GRAY)
