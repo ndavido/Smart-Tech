@@ -8,6 +8,7 @@ from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Dense, Conv2D, Flatten, Dropout, MaxPooling2D
 from tensorflow.keras.optimizers import Adam
 from keras.utils import to_categorical
+from keras.models import Model
 import random
 import requests
 import cv2
@@ -27,7 +28,30 @@ def main():
                         batch_size=200, verbose=1, shuffle=1)
     plot_performance(history)
     evaluate_model(model, X_test, y_test)
-    test_model_with_input(model)
+    img = test_model_with_input(model)
+    visualize_convolution_output(model, img)
+
+
+def visualize_convolution_output(model, img):
+    layer1 = Model(inputs=model.layers[0].input,
+                   outputs=model.layers[0].output)
+    layer2 = Model(inputs=model.layers[0].input,
+                   outputs=model.layers[2].output)
+    visual_layer1 = layer1.predict(img)
+    visual_layer2 = layer2.predict(img)
+
+    plt.figure(figsize=(10, 6))
+    for i in range(30):
+        plt.subplot(6, 5, i+1)
+        plt.imshow(visual_layer1[0, :, :, i], cmap=plt.get_cmap('jet'))
+        plt.axis('off')
+    plt.show()
+    plt.figure(figsize=(10, 6))
+    for i in range(30):
+        plt.subplot(6, 5, i+1)
+        plt.imshow(visual_layer2[0, :, :, i], cmap=plt.get_cmap('jet'))
+        plt.axis('off')
+    plt.show()
 
 
 def evaluate_model(model, X_test, y_test):
